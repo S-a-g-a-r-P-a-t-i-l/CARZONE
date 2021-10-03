@@ -7,7 +7,7 @@ const Home = () => {
         <Fragment>
 
         <div className="banner">
-          <p>Welcome to Carzone</p>
+          <p>Welcome to Carzone test</p>
           <h1>FIND AMAZING CARS BELOW</h1>
 
           <a href="#container">
