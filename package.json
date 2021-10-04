@@ -1,18 +1,32 @@
 {
-  "name": "ecommerce",
+  "name": "ecomerce",
   "version": "1.0.0",
-  "description": "",
+  "description": "backend/server.js",
   "main": "backend/server.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
+<<<<<<< HEAD
+    "start": "node backend/server.js",
+    "dev": "nodemon backend/server.js"
+=======
     "start":"node backend/server.js",
     "dev":"nodemon backend/server.js"
+>>>>>>> 23d0edf2063d28596ecbf8e93876ad9c0d4988d3
   },
   "author": "",
   "license": "ISC",
   "dependencies": {
     "dotenv": "^10.0.0",
     "express": "^4.17.1",
-    "mongoose": "^6.0.8"
-  }
+    "mongoose": "^6.0.8",
+    "nodemon": "^2.0.13"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/S-a-g-a-r-P-a-t-i-l/CARZONE.git"
+  },
+  "bugs": {
+    "url": "https://github.com/S-a-g-a-r-P-a-t-i-l/CARZONE/issues"
+  },
+  "homepage": "https://github.com/S-a-g-a-r-P-a-t-i-l/CARZONE#readme"
 }
