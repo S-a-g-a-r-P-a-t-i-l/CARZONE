@@ -144,7 +144,7 @@ exports.resetPassword = catchAsyncErrors(async (req, res, next) => {
 
   sendToken(user, 200, res);
 });
-/*
+
 // Get User Detail
 exports.getUserDetails = catchAsyncErrors(async (req, res, next) => {
   const user = await User.findById(req.user.id);
@@ -269,9 +269,9 @@ exports.deleteUser = catchAsyncErrors(async (req, res, next) => {
   }
 
   const imageId = user.avatar.public_id;
-
+/*
   await cloudinary.v2.uploader.destroy(imageId);
-
+*/
   await user.remove();
 
   res.status(200).json({
@@ -279,4 +279,3 @@ exports.deleteUser = catchAsyncErrors(async (req, res, next) => {
     message: "User Deleted Successfully",
   });
 });
-*/
