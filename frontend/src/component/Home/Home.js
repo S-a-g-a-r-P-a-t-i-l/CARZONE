@@ -1,19 +1,28 @@
-import React, { Fragment } from 'react'
+import React, { Fragment,useEffect} from 'react'
 import { CgMouse } from 'react-icons/all'
 import "./Home.css";
-import Product from "./product.js"
+import Product from "./Product.js"
 import MetaData from '../layout/MetaData';
-
-const product ={
-  name: "maruti suzuki",
-  images:[{ url:"https://i.ibb.co/DRST11n/1.webp"}],
-  price:"Rs 500000 ",
-  _id :"sagar",
-};
+import {getProduct} from "../../actions/productAction";
+import {useSelector,useDispatch} from "react-redux"
+import Loader from "../layout/Loader/Loader"
+import { useAlert } from "react-alert";
 
 const Home = () => {
+  const alert = useAlert();
+  const dispatch = useDispatch();
+  const {loading,error,products,productsCount} = useSelector(state => state.products)
+
+  useEffect(() => {
+    if (error) {
+     return alert.error(error);
+    }
+        dispatch(getProduct());
+  }, [dispatch,error,alert]);
     return (
-        <Fragment>
+       <Fragment>
+         {loading ? (<Loader/>): 
+         <Fragment>
         <MetaData title="CARZONE"/>
  
         <div className="banner">
@@ -28,18 +37,12 @@ const Home = () => {
         </div>
         <h2 className="homeHeading">Featured Products</h2>
         <div className="container" id="container">
-            <Product product ={product}/>
-            <Product product ={product}/>
-            <Product product ={product}/>
-            <Product product ={product}/>
-
-            <Product product ={product}/>
-            <Product product ={product}/>
-            <Product product ={product}/>
-            <Product product ={product}/>
-            
+          {products && products.map(product => (
+            <Product product={product}/>
+          ))}
           </div>
-        </Fragment>
+        </Fragment>}
+       </Fragment>
       )} 
 
       export default Home
