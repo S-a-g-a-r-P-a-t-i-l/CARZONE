@@ -1,23 +1,28 @@
-import React , { Fragment, useEffect, useState} from 'react';
+import React, { Fragment, useEffect, useState } from "react";
 import "./Products.css";
 import { useSelector, useDispatch } from "react-redux";
 import { clearErrors, getProduct } from "../../actions/productAction";
 import Loader from "../layout/Loader/Loader";
 import ProductCard from "../Home/ProductCard";
 import Pagination from "react-js-pagination";
+import { useAlert } from "react-alert";
+import MetaData from "../layout/MetaData";
 
 
-const Products = ({match}) => {
-const dispatch = useDispatch();
-const [currentPage, setCurrentPage] = useState(1);
-const {
+const Products = ({ match }) => {
+  const dispatch = useDispatch();
+
+  const alert = useAlert();
+
+  const [currentPage, setCurrentPage] = useState(1);
+
+  const {
     products,
     loading,
     error,
-    productCount,
-    resultPerPage
+    productsCount,
+    resultPerPage,
   } = useSelector((state) => state.products);
-
 
   const keyword = match.params.keyword;
 
@@ -25,27 +30,35 @@ const {
     setCurrentPage(e);
   };
 
-useEffect(() => {
-    dispatch(getProduct(keyword,currentPage));
-    },[dispatch,keyword,currentPage]);
-     return(
+
+  useEffect(() => {
+    if (error) {
+      alert.error(error);
+      dispatch(clearErrors());
+    }
+    dispatch(getProduct(keyword, currentPage));
+  }, [dispatch, keyword, currentPage, alert, error]);
+
+  return (
+    <Fragment>
+      {loading ? (
+        <Loader />
+      ) : (
         <Fragment>
-          {loading ? 
-            <Loader />
-           : 
-            <Fragment>
-            <h2 className="productsHeading">Products</h2> 
-            <div className="products">
+          <MetaData title="CARZONE" />
+          <h2 className="productsHeading">CARS</h2>
+
+          <div className="products">
             {products &&
               products.map((product) => (
                 <ProductCard key={product._id} product={product} />
               ))}
           </div>
-          <div className="paginationBox">
+            <div className="paginationBox">
               <Pagination
                 activePage={currentPage}
                 itemsCountPerPage={resultPerPage}
-                totalItemsCount={productCount}
+                totalItemsCount={productsCount}
                 onChange={setCurrentPageNo}
                 nextPageText="Next"
                 prevPageText="Prev"
@@ -57,10 +70,11 @@ useEffect(() => {
                 activeLinkClass="pageLinkActive"
               />
             </div>
-
-            </Fragment>
-          }
+  
         </Fragment>
-     )};
+      )}
+    </Fragment>
+  );
+};
 
 export default Products;

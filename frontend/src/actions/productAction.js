@@ -10,7 +10,7 @@ import
  CLEAR_ERRORS,
 }from "../constants/productConstants";
 
-export const getProduct = (keyword="",currentPage =1) => async (dispatch) =>{
+export const getProduct = (keyword="",currentPage = 1) => async (dispatch) =>{
     try{
         dispatch ({type:ALL_PRODUCT_REQUEST });
 
