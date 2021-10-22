@@ -40,8 +40,8 @@ const reducer = combineReducers({
     products: productsReducer,
    productDetails: productDetailsReducer,
     user: userReducer,
-    profile: profileReducer,
-    forgotPassword: forgotPasswordReducer, /*
+    profile: profileReducer,/*
+    forgotPassword: forgotPasswordReducer, 
     cart: cartReducer,
     newOrder: newOrderReducer,
     myOrders: myOrdersReducer,

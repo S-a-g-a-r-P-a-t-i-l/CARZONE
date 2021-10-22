@@ -13,6 +13,7 @@ import {
     UPDATE_PROFILE_REQUEST,
     UPDATE_PROFILE_SUCCESS,
     UPDATE_PROFILE_FAIL,
+    UPDATE_PROFILE_RESET,
     UPDATE_PASSWORD_REQUEST,
     UPDATE_PASSWORD_SUCCESS,
     UPDATE_PASSWORD_FAIL,
@@ -108,7 +109,7 @@ import {
   
       const { data } = await axios.put(`/api/v1/me/update`, userData, config);
   
-      dispatch({ type: UPDATE_PROFILE_SUCCESS, payload: data.success });
+      dispatch({ type: UPDATE_PROFILE_SUCCESS, payload: data.user });
     } catch (error) {
       dispatch({
         type: UPDATE_PROFILE_FAIL,
@@ -116,7 +117,7 @@ import {
       });
     }
   };
-  
+  /*
   // Update Password
   export const updatePassword = (passwords) => async (dispatch) => {
     try {
@@ -240,7 +241,7 @@ import {
       });
     }
   };
-  
+  */
   // Clearing Errors
   export const clearErrors = () => async (dispatch) => {
     dispatch({ type: CLEAR_ERRORS });

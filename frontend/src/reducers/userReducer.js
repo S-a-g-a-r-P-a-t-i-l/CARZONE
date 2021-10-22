@@ -13,7 +13,7 @@ import {
     UPDATE_PROFILE_REQUEST,
     UPDATE_PROFILE_SUCCESS,
     UPDATE_PROFILE_FAIL,
-    UPDATE_PROFILE_RESET,
+    UPDATE_PROFILE_RESET,/*
     UPDATE_PASSWORD_REQUEST,
     UPDATE_PASSWORD_SUCCESS,
     UPDATE_PASSWORD_RESET,
@@ -37,7 +37,7 @@ import {
     UPDATE_USER_RESET,
     USER_DETAILS_REQUEST,
     USER_DETAILS_SUCCESS,
-    USER_DETAILS_FAIL,
+    USER_DETAILS_FAIL,*/
     CLEAR_ERRORS,
   } from "../constants/userConstants";
   
@@ -101,26 +101,26 @@ import {
         return state;
     }
   };
-  
+ 
   export const profileReducer = (state = {}, action) => {
     switch (action.type) {
       case UPDATE_PROFILE_REQUEST:
-      case UPDATE_PASSWORD_REQUEST:
-      case UPDATE_USER_REQUEST:
-      case DELETE_USER_REQUEST:
+     /* case UPDATE_PASSWORD_REQUEST:*/
+     // case UPDATE_USER_REQUEST:
+     /* case DELETE_USER_REQUEST:*/
         return {
           ...state,
           loading: true,
         };
       case UPDATE_PROFILE_SUCCESS:
-      case UPDATE_PASSWORD_SUCCESS:
-      case UPDATE_USER_SUCCESS:
+      /* case UPDATE_PASSWORD_SUCCESS:*/
+       /*case UPDATE_USER_SUCCESS:*/
         return {
           ...state,
           loading: false,
           isUpdated: action.payload,
         };
-  
+  /*
       case DELETE_USER_SUCCESS:
         return {
           ...state,
@@ -128,11 +128,11 @@ import {
           isDeleted: action.payload.success,
           message: action.payload.message,
         };
-  
+  */
       case UPDATE_PROFILE_FAIL:
-      case UPDATE_PASSWORD_FAIL:
-      case UPDATE_USER_FAIL:
-      case DELETE_USER_FAIL:
+     /* case UPDATE_PASSWORD_FAIL:*/
+      /*case UPDATE_USER_FAIL:*/
+      /*case DELETE_USER_FAIL:*/
         return {
           ...state,
           loading: false,
@@ -140,19 +140,19 @@ import {
         };
   
       case UPDATE_PROFILE_RESET:
-      case UPDATE_PASSWORD_RESET:
-      case UPDATE_USER_RESET:
+     // case UPDATE_PASSWORD_RESET:
+     // case UPDATE_USER_RESET:
         return {
           ...state,
           isUpdated: false,
         };
   
-      case DELETE_USER_RESET:
+    /*  case DELETE_USER_RESET:
         return {
           ...state,
           isDeleted: false,
         };
-  
+ */
       case CLEAR_ERRORS:
         return {
           ...state,
@@ -162,8 +162,8 @@ import {
       default:
         return state;
     }
-  };
-  
+  }; 
+  /*
   export const forgotPasswordReducer = (state = {}, action) => {
     switch (action.type) {
       case FORGOT_PASSWORD_REQUEST:
@@ -269,7 +269,4 @@ import {
         return state;
     }
   };
-
-
-
-
+*/
