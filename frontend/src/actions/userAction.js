@@ -13,7 +13,6 @@ import {
     UPDATE_PROFILE_REQUEST,
     UPDATE_PROFILE_SUCCESS,
     UPDATE_PROFILE_FAIL,
-    UPDATE_PROFILE_RESET,
     UPDATE_PASSWORD_REQUEST,
     UPDATE_PASSWORD_SUCCESS,
     UPDATE_PASSWORD_FAIL,
@@ -67,7 +66,7 @@ import {
   
       const { data } = await axios.post(`/api/v1/register`, userData, config);
   
-      dispatch({ type: REGISTER_USER_SUCCESS, payload: data.user });
+      dispatch({ type: REGISTER_USER_SUCCESS, payload: data.success });
     } catch (error) {
       dispatch({
         type: REGISTER_USER_FAIL,
