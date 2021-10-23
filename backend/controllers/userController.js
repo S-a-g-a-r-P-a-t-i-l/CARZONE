@@ -178,12 +178,13 @@ exports.updatePassword = catchAsyncErrors(async (req, res, next) => {
 
 // update User Profile
 exports.updateProfile = catchAsyncErrors(async (req, res, next) => {
-  const newUserData = {
+   const newUserData = {
     name: req.body.name,
     email: req.body.email,
   };
 
-  /*if (req.body.avatar !== "") {
+  if (req.body.avatar !== "") {
+   
     const user = await User.findById(req.user.id);
 
     const imageId = user.avatar.public_id;
@@ -201,7 +202,7 @@ exports.updateProfile = catchAsyncErrors(async (req, res, next) => {
       url: myCloud.secure_url,
     };
   }
-*/
+
   const user = await User.findByIdAndUpdate(req.user.id, newUserData, {
     new: true,
     runValidators: true,

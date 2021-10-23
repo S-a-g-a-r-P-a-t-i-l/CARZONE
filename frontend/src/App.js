@@ -1,7 +1,7 @@
 import './App.css';
+import { useEffect, useState } from "react";
 import Header from "./component/layout/Header/Header.js";
 import {BrowserRouter as Router,Route} from 'react-router-dom';
-import React, {useEffect} from 'react';
 import WebFont from 'webfontloader';
 import Footer from "./component/layout/Footer/Footer.js";
 import Home from "./component/Home/Home.js";
@@ -17,10 +17,23 @@ import Profile from "./component/User/Profile.js";
 import ProtectedRoute from "./component/Route/ProtectedRoute";
 import UpdateProfile from "./component/User/UpdateProfile.js";
 import Cart from "./component/Cart/Cart.js";
-
+import Shipping from "./component/Cart/Shipping.js";
+import ConfirmOrder from "./component/Cart/ConfirmOrder.js";
+import axios from "axios";
+import Payment from "./component/Cart/Payment.js";
+import { Elements } from "@stripe/react-stripe-js";
+import { loadStripe } from "@stripe/stripe-js";
+import NotFound from "./component/layout/Not Found/NotFound.js";
 
 function App() {
   const { isAuthenticated, user } = useSelector((state) => state.user);
+  const [stripeApiKey, setStripeApiKey] = useState("");
+
+  async function getStripeApiKey() {
+    const { data } = await axios.get("/api/v1/stripeapikey");
+
+    setStripeApiKey(data.stripeApiKey);
+  }
   useEffect(() => {
     WebFont.load({
       google: {
@@ -29,6 +42,7 @@ function App() {
     });
 
     store.dispatch(loadUser());
+    getStripeApiKey();
   }, []);
 
   return (
@@ -43,7 +57,15 @@ function App() {
     <ProtectedRoute exact path="/account" component={Profile} />
     <ProtectedRoute exact path="/me/update" component={UpdateProfile} />
     <Route exact path="/login" component={LoginSignUp} />
-
+    <Route exact path="/cart" component={Cart} />
+    <ProtectedRoute exact path="/shipping" component={Shipping} />
+    <ProtectedRoute exact path="/order/confirm" component={ConfirmOrder} />
+    
+   
+    <Elements stripe={loadStripe(stripeApiKey)}>
+      <ProtectedRoute exact path="/process/payment" component={Payment} />
+    </Elements>
+    
     <Footer />
     </Router>
     );

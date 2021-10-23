@@ -7,6 +7,8 @@ import ReactStars from 'react-rating-stars-component'
 import ReviewCard from "./ReviewCard.js"
 import Loader from '../layout/Loader/Loader';
 import {useAlert} from 'react-alert'
+import MetaData from "../layout/MetaData";
+import { addItemsToCart } from "../../actions/cartAction";
 
 const ProductDetails = ({match}) => {
    const dispatch = useDispatch();
@@ -70,7 +72,7 @@ const reviewSubmitHandler = () => {
   myForm.set("comment", comment);
   myForm.set("productId", match.params.id);
 
-  dispatch(newReview(myForm));
+ // dispatch(newReview(myForm));
 
   setOpen(false);
 };
@@ -81,7 +83,7 @@ useEffect(() => {
     dispatch(clearErrors());
   }
 
-  if (reviewError) {
+ /* if (reviewError) {
     alert.error(reviewError);
     dispatch(clearErrors());
   }
@@ -89,14 +91,16 @@ useEffect(() => {
   if (success) {
     alert.success("Review Submitted Successfully");
     dispatch({ type: NEW_REVIEW_RESET });
-  }
+  }*/
   dispatch(getProductDetails(match.params.id));
-}, [dispatch, match.params.id, error, alert, reviewError, success]);
+}, [dispatch, match.params.id, error, alert]);
 
     return (
       <Fragment>
           {loading? <Loader/> :(
+            
             <Fragment>
+            <MetaData title={`${product.name} -- CARZONE`} />
     <div className="ProductDetails">
        <div>
            <Carousel>
@@ -124,11 +128,6 @@ useEffect(() => {
         <div className="detailsBlock-3">
             <h1>{`₹${product.price}`}</h1>
             <div className="detailsBlock-3-1">
-            <div className="detailsBlock-3-1-1">
-               <button onClick={decreaseQuantity}>-</button>
-               <input readOnly value="1" type="number" value={quantity} />
-               <button onClick={increaseQuantity}>+</button>
-               </div> {""}
                <button onClick ={ addToCartHandler}>Add to Cart</button>
             </div>
             <p>
