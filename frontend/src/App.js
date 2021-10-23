@@ -16,6 +16,8 @@ import { useSelector } from "react-redux";
 import Profile from "./component/User/Profile.js";
 import ProtectedRoute from "./component/Route/ProtectedRoute";
 import UpdateProfile from "./component/User/UpdateProfile.js";
+import Cart from "./component/Cart/Cart.js";
+
 
 function App() {
   const { isAuthenticated, user } = useSelector((state) => state.user);

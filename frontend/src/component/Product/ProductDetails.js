@@ -1,4 +1,4 @@
-import React, { Fragment,useEffect } from 'react';
+import React, { Fragment,useEffect, useState } from 'react';
 import Carousel from "react-material-ui-carousel";
 import "./ProductDetails.css";
 import {useSelector, useDispatch} from "react-redux"
@@ -26,8 +26,73 @@ const ProductDetails = ({match}) => {
     size: window.innerWidth < 600 ? 20 : 25,
     value: product.ratings,
     isHalf: true,
-
 };
+const [quantity, setQuantity] = useState(1);
+const [open, setOpen] = useState(false);
+const [rating, setRating] = useState(0);
+const [comment, setComment] = useState("");
+
+const increaseQuantity = () => {
+  if (product.Stock <= quantity) return;
+
+  const qty = quantity + 1;
+  setQuantity(qty);
+};
+
+
+//  const increaseQuantity = () => {
+//    if (product.Stock <= quantity)
+
+//    const qty = quantity + 1;
+//    setQuantity(qty);
+//  };
+ 
+ const decreaseQuantity = () => {
+  if (1 >= quantity) return;
+
+  const qty = quantity - 1;
+  setQuantity(qty);
+};
+
+const addToCartHandler = () => {
+  dispatch(addItemsToCart(match.params.id, quantity));
+  alert.success("Item Added To Cart");
+};
+
+// const submitReviewToggle = () => {
+//   open ? setOpen(false) : setOpen(true);
+// };
+
+const reviewSubmitHandler = () => {
+  const myForm = new FormData();
+
+  myForm.set("rating", rating);
+  myForm.set("comment", comment);
+  myForm.set("productId", match.params.id);
+
+  dispatch(newReview(myForm));
+
+  setOpen(false);
+};
+
+useEffect(() => {
+  if (error) {
+    alert.error(error);
+    dispatch(clearErrors());
+  }
+
+  if (reviewError) {
+    alert.error(reviewError);
+    dispatch(clearErrors());
+  }
+
+  if (success) {
+    alert.success("Review Submitted Successfully");
+    dispatch({ type: NEW_REVIEW_RESET });
+  }
+  dispatch(getProductDetails(match.params.id));
+}, [dispatch, match.params.id, error, alert, reviewError, success]);
+
     return (
       <Fragment>
           {loading? <Loader/> :(
@@ -60,11 +125,11 @@ const ProductDetails = ({match}) => {
             <h1>{`₹${product.price}`}</h1>
             <div className="detailsBlock-3-1">
             <div className="detailsBlock-3-1-1">
-               <button>-</button>
-               <input value="1" type="number" />
-               <button>+</button>
+               <button onClick={decreaseQuantity}>-</button>
+               <input readOnly value="1" type="number" value={quantity} />
+               <button onClick={increaseQuantity}>+</button>
                </div> {""}
-               <button>Add to Cart</button>
+               <button onClick ={ addToCartHandler}>Add to Cart</button>
             </div>
             <p>
                   Status:
