@@ -23,6 +23,8 @@ import axios from "axios";
 import Payment from "./component/Cart/Payment.js";
 import { Elements } from "@stripe/react-stripe-js";
 import { loadStripe } from "@stripe/stripe-js";
+import Contact from "./component/layout/Contact/Contact.js";
+import About from "./component/layout/About/About.js"
 import NotFound from "./component/layout/Not Found/NotFound.js";
 
 function App() {
@@ -54,6 +56,8 @@ function App() {
     <Route exact path="/products" component={Products} />
     <Route path="/products/:keyword" component={Products} />
     <Route exact path="/search" component={Search} />
+    <Route exact path="/contact" component={Contact} />
+<Route exact path="/about" component={About} />
     <ProtectedRoute exact path="/account" component={Profile} />
     <ProtectedRoute exact path="/me/update" component={UpdateProfile} />
     <Route exact path="/login" component={LoginSignUp} />

@@ -23,8 +23,8 @@ const Footer = () => {
       <div className="rightFooter">
         <h4>Follow Us</h4>
         <a href="https://www.instagram.com/carzone_0000/">Instagram</a>
-        <a href="http://youtube.com/6packprogramemr">Youtube</a>
-        <a href="http://instagram.com/meabhisingh">Facebook</a>
+        <a href="https://www.youtube.com/channel/UCG73arnTYY1gLAhDKBDiseQ">Youtube</a>
+        <a href="https://www.facebook.com/Carzone-109102838208367">Facebook</a>
       </div>
     </footer>
     )
