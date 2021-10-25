@@ -65,11 +65,11 @@ function App() {
     <ProtectedRoute exact path="/shipping" component={Shipping} />
     <ProtectedRoute exact path="/order/confirm" component={ConfirmOrder} />
     
-   
+    {stripeApiKey && (
     <Elements stripe={loadStripe(stripeApiKey)}>
       <ProtectedRoute exact path="/process/payment" component={Payment} />
     </Elements>
-    
+    )} 
     <Footer />
     </Router>
     );
