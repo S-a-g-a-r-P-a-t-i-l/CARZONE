@@ -13,7 +13,7 @@ import {
     UPDATE_PROFILE_REQUEST,
     UPDATE_PROFILE_SUCCESS,
     UPDATE_PROFILE_FAIL,
-    UPDATE_PROFILE_RESET,/*
+    UPDATE_PROFILE_RESET,
     UPDATE_PASSWORD_REQUEST,
     UPDATE_PASSWORD_SUCCESS,
     UPDATE_PASSWORD_RESET,
@@ -37,7 +37,7 @@ import {
     UPDATE_USER_RESET,
     USER_DETAILS_REQUEST,
     USER_DETAILS_SUCCESS,
-    USER_DETAILS_FAIL,*/
+    USER_DETAILS_FAIL,
     CLEAR_ERRORS,
   } from "../constants/userConstants";
   
@@ -163,7 +163,7 @@ import {
         return state;
     }
   }; 
-  /*
+ 
   export const forgotPasswordReducer = (state = {}, action) => {
     switch (action.type) {
       case FORGOT_PASSWORD_REQUEST:
@@ -269,4 +269,3 @@ import {
         return state;
     }
   };
-*/

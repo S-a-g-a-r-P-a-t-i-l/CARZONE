@@ -155,7 +155,7 @@ exports.createProductReview = catchAsyncErrors(async (req, res, next) => {
       reviews: product.reviews,
     });
   });
-  /*
+
   // Delete Review
   exports.deleteReview = catchAsyncErrors(async (req, res, next) => {
     const product = await Product.findById(req.query.productId);
@@ -202,4 +202,3 @@ exports.createProductReview = catchAsyncErrors(async (req, res, next) => {
       success: true,
     });
   });
-  */
