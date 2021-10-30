@@ -33,7 +33,6 @@ const Cart = ({ history }) => {
           <div className="cartPage">
             <div className="cartHeader">
               <p>Product</p>
-              <p>Quantity</p>
               <p>Subtotal</p>
             </div>
 
@@ -43,7 +42,7 @@ const Cart = ({ history }) => {
                   <CartItemCard item={item} deleteCartItems={deleteCartItems} />
                  
                   <p className="cartSubtotal">{`₹${
-                    item.price * item.quantity
+                    item.price 
                   }`}</p>
                 </div>
               ))}
@@ -53,7 +52,7 @@ const Cart = ({ history }) => {
               <div className="cartGrossProfitBox">
                 <p>Gross Total</p>
                 <p>{`₹${cartItems.reduce(
-                  (acc, item) => acc + item.quantity * item.price,
+                  (acc, item) => acc +  item.price,
                   0
                 )}`}</p>
               </div>

@@ -27,16 +27,6 @@ const NewProduct = ({ history }) => {
   const [images, setImages] = useState([]);
   const [imagesPreview, setImagesPreview] = useState([]);
 
-  const categories = [
-    "Laptop",
-    "Footwear",
-    "Bottom",
-    "Tops",
-    "Attire",
-    "Camera",
-    "SmartPhones",
-  ];
-
   useEffect(() => {
     if (error) {
       alert.error(error);
@@ -130,18 +120,6 @@ const NewProduct = ({ history }) => {
                 cols="30"
                 rows="1"
               ></textarea>
-            </div>
-
-            <div>
-              <AccountTreeIcon />
-              <select onChange={(e) => setCategory(e.target.value)}>
-                <option value="">Choose Category</option>
-                {categories.map((cate) => (
-                  <option key={cate} value={cate}>
-                    {cate}
-                  </option>
-                ))}
-              </select>
             </div>
 
             <div>

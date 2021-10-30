@@ -11,7 +11,7 @@ const ConfirmOrder = ({ history }) => {
   const { user } = useSelector((state) => state.user);
 
   const subtotal = cartItems.reduce(
-    (acc, item) => acc + item.quantity * item.price,
+    (acc, item) => acc +  item.price,
     0
   );
 
@@ -19,7 +19,7 @@ const ConfirmOrder = ({ history }) => {
 
   const tax = subtotal * 0.18;
 
-  const totalPrice = subtotal + tax + shippingCharges;
+  const totalPrice = subtotal ;
 
   const address = `${shippingInfo.address}, ${shippingInfo.city}, ${shippingInfo.state}, ${shippingInfo.pinCode}, ${shippingInfo.country}`;
 
@@ -86,14 +86,6 @@ const ConfirmOrder = ({ history }) => {
               <div>
                 <p>Subtotal:</p>
                 <span>₹{subtotal}</span>
-              </div>
-              <div>
-                <p>Delivery Charges:</p>
-                <span>₹{shippingCharges}</span>
-              </div>
-              <div>
-                <p>GST:</p>
-                <span>₹{tax}</span>
               </div>
             </div>
 
